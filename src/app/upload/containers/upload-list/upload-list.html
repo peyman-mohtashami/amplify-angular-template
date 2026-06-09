@@ -1,0 +1,209 @@
+<div class="flex flex-col" [class.bg-neutral-100]="isHovering"
+     appDropzone (hovered)="toggleHover($event)"
+     (dropped)="onDrop($event)">
+  <header class="bg-white shadow-sm">
+    <div class="flex justify-between px-4 py-6 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Uploads</h1>
+      <div class="flex gap-2">
+        <button class="btn primary" (click)="refresh()">
+          <span class="material-symbols-outlined text-sm!">refresh</span>
+          <span>Refresh</span>
+        </button>
+
+        <a class="btn primary" [routerLink]="['/uploads/new']">
+          <span class="material-symbols-outlined text-sm!">upload</span>
+          <span>Upload</span>
+        </a>
+
+        <button (click)="openDialog()">Open dialog</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 ">
+    <div class="px-4 py-6 sm:px-6 lg:px-8 text-sm">
+
+      <div>
+        <!--      class="border-input data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors not-data-files:justify-center has-[input:focus]:ring-[3px]">-->
+        <input class="sr-only"
+               #fileInput
+               [multiple]="true"
+               (change)="onDrop($any($event.target)?.files)"
+               type="file"
+               aria-label="Upload image file"/>
+
+
+        @if (list().length) {
+          <div class="flex items-center justify-between gap-3 border-b border-gray-300 pb-3">
+            <div class="flex gap-2">
+              <div class="relative">
+                <input type="text" id="Search" class="p-2 border mt-0.5 w-full rounded border-gray-300 ps-10 sm:text-sm">
+
+                <span class="absolute inset-y-0 left-2 grid w-8 place-content-center text-gray-400">
+<!--                  <button type="button" aria-label="Submit" class="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100">-->
+                    <span class="material-symbols-outlined text-lg!">search</span>
+<!--                  </button>-->
+                </span>
+              </div>
+
+<!--              <form class="max-w-sm mx-auto">-->
+<!--                <label for="countries" class="block mb-2.5 text-sm font-medium text-heading">Select an option</label>-->
+<!--                <select id="countries" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body">-->
+<!--                  <option selected>Choose a country</option>-->
+<!--                  <option value="US">United States</option>-->
+<!--                  <option value="CA">Canada</option>-->
+<!--                  <option value="FR">France</option>-->
+<!--                  <option value="DE">Germany</option>-->
+<!--                </select>-->
+<!--              </form>-->
+
+              <button [cdkMenuTriggerFor]="menu" class="text-gray-400 flex items-center justify-between w-75 py-2 px-4 border border-gray-300 rounded text-start">
+                <span>Filter by status</span>
+                <span class="material-symbols-outlined">arrow_drop_down</span>
+              </button>
+
+              <ng-template #menu>
+                <ul class="flex flex-col justify-start items-start bg-white shadow-lg w-80 text-sm" cdkMenu>
+                  <li class="w-full hover:bg-gray-100 px-4 py-2 cursor-pointer" cdkMenuItem>Validating</li>
+                  <li class="w-full hover:bg-gray-100 px-4 py-2 cursor-pointer" cdkMenuItem>Errors</li>
+                  <li class="w-full hover:bg-gray-100 px-4 py-2 cursor-pointer" cdkMenuItem>Warnings</li>
+                  <li class="w-full hover:bg-gray-100 px-4 py-2 cursor-pointer" cdkMenuItem>Ready for submission</li>
+                </ul>
+              </ng-template>
+
+
+
+            </div>
+            <!-- Pagination -->
+            <nav class="gap-3">
+              <ul class="flex items-center gap-3">
+                <button size="icon" (click)="onPreviousPage()">
+                  <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <p class="text-muted-foreground text-sm" aria-live="polite">
+                  Page
+                  <span class="text-foreground">{{ pagination().pageIndex + 1 }}</span>
+                  of{{ ' ' }}
+                  <span class="text-foreground">{{ pagination().totalPages }}</span>
+                </p>
+                <button size="icon" (click)="onNextPage()">
+                  <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+              </ul>
+            </nav>
+          </div>
+          <div class="">
+            <table class="min-w-full divide-y-2 divide-gray-200">
+              <thead class="text-left">
+              <tr class="text-gray-900">
+                <!--        <th class="px-3 py-2 whitespace-nowrap">ID</th>-->
+<!--                <th class="px-3 py-2 whitespace-nowrap">-->
+<!--                  <input type="checkbox" class="accent-cyan-600 size-5 rounded-2xl border-gray-300 shadow-sm" (click)="onSelectAll()" [checked]="allChecked">-->
+<!--                </th>-->
+                <th class="px-3 py-2 whitespace-nowrap">
+                  <span class="flex items-center gap-4">
+                    <span>Name</span>
+                    @if (sort().field === 'name') {
+                      @if (sort().order === 'desc') {
+                        <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('name', 'asc')">keyboard_arrow_down</span>
+                      } @else {
+                        <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('name', 'desc')">keyboard_arrow_up</span>
+                      }
+                    } @else {
+                      <span class="text-gray-400 cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('name', 'desc')">expand_all</span>
+                    }
+                  </span>
+                </th>
+                <!--        <th class="px-3 py-2 whitespace-nowrap">Type</th>-->
+                <!--        <th class="px-3 py-2 whitespace-nowrap">SHA</th>-->
+                <th class="px-3 py-2 whitespace-nowrap">
+                  <span class="flex items-center gap-4">
+                    <span>Status</span>
+                    @if (sort().field === 'status') {
+                      @if (sort().order === 'desc') {
+                        <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('status', 'asc')">keyboard_arrow_down</span>
+                      } @else {
+                        <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('status', 'desc')">keyboard_arrow_up</span>
+                      }
+                    } @else {
+                      <span class="text-gray-400 cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('status', 'desc')">expand_all</span>
+                    }
+                  </span>
+                </th>
+                <th class="px-3 py-2 whitespace-nowrap">
+                  <span class="flex items-center gap-4">
+                    <span>Uploaded by</span>
+                    @if (sort().field === 'uploadedBy') {
+                      @if (sort().order === 'desc') {
+                        <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('uploadedBy', 'asc')">keyboard_arrow_down</span>
+                      } @else {
+                        <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('uploadedBy', 'desc')">keyboard_arrow_up</span>
+                      }
+                    } @else {
+                      <span class="text-gray-400 cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('uploadedBy', 'desc')">expand_all</span>
+                    }
+                  </span>
+                </th>
+                <th class="px-3 py-2 whitespace-nowrap">
+            <span class="flex items-center gap-4">
+              <span>Date created</span>
+              @if (sort().field === 'createdAt') {
+                @if (sort().order === 'desc') {
+                  <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('createdAt', 'asc')">keyboard_arrow_down</span>
+                } @else {
+                  <span class="cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('createdAt', 'desc')">keyboard_arrow_up</span>
+                }
+              } @else {
+                <span class="text-gray-400 cursor-pointer text-lg! material-symbols-outlined" (click)="onSort('createdAt', 'desc')">expand_all</span>
+              }
+            </span>
+                </th>
+                <th class="px-3 py-2 whitespace-nowrap">Actions</th>
+              </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-200">
+                @for (item of list(); track item.id) {
+                  <tr class="text-gray-900">
+<!--                    <td class="px-3 py-2 whitespace-nowrap">-->
+<!--                      <input type="checkbox" class="accent-cyan-600 size-5 rounded-2xl border-gray-300 shadow-sm" (change)="onSelect(item)">-->
+<!--                    </td>-->
+
+                    <!--        <td class="px-3 py-2 whitespace-nowrap">{{ item.id }}</td>-->
+                    <td class="px-3 py-2 whitespace-nowrap font-bold">{{ item.name }}</td>
+                    <!--        <td class="px-3 py-2 whitespace-nowrap">{{ item.type }}</td>-->
+                    <!--        <td class="px-3 py-2 whitespace-nowrap">{{ item.sha}}</td>-->
+                    <td class="px-3 py-2 whitespace-nowrap">
+                      <app-upload-status [data]="item"/>
+                      <!--                {{ item.status }}-->
+                    </td>
+                    <td class="px-3 py-2 whitespace-nowrap">{{ item.uploadedBy }}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">{{ item.createdAt | date:'medium' }}</td>
+                    <td class="px-3 py-2 whitespace-nowrap">
+                      <button class="icon-btn danger" (click)="deleteItem(item)">
+                        <span class="sr-only">Remove</span>
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                } @empty {
+                  No data
+                }
+              </tbody>
+            </table>
+          </div>
+        } @else {
+          <div
+            class="data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors not-data-files:justify-center has-[input:focus]:ring-[3px]">
+            No Data
+            <a class="btn primary" [routerLink]="['/uploads/new']">
+              <span class="material-symbols-outlined text-sm!">upload</span>
+              <span>Upload</span>
+            </a>
+          </div>
+        }
+
+      </div>
+    </div>
+  </main>
+</div>

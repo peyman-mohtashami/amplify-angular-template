@@ -1,23 +1,302 @@
+<!--<div class="">-->
+  <nav class="fixed top-0 left-0 right-0 z-1 bg-primary-500">
+    <div class="px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+
+        <div class="flex items-center">
+          <div class="shrink-0">
+            <span class="text-white">Data Submission Portal</span>
+          </div>
+        </div>
+
+        <div class="hidden md:block">
+          <div class="flex items-center gap-2">
+            <div class="hidden md:block">
+              <div class="flex items-baseline gap-2">
+                <a [routerLink]="['/uploads']" aria-current="page" class="btn">Uploads</a>
+                <a [routerLink]="['/submissions']" class="btn">Submissions</a>
+                <a [routerLink]="['/user-retractions']" class="btn">User Retractions</a>
+              </div>
+            </div>
+
+            <button [cdkMenuTriggerFor]="notificationMenu" type="button" class="icon-btn  text-gray-100">
+              <span class="sr-only">View notifications</span>
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+
+            <ng-template #notificationMenu>
+              <!--                <div cdkMenu popover class="w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline-1 outline-black/5 transition transition-discrete [&#45;&#45;anchor-gap:&#45;&#45;spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">-->
+              <div cdkMenu
+                   class="w-48 origin-top-right rounded-md py-1 bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                <div class="px-4 py-2 bg-primary-200 text-sm">Peyman</div>
+                <!--                  <a cdkMenuItem href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Your profile</a>-->
+                <!--                  <a cdkMenuItem href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Settings</a>-->
+                <a cdkMenuItem
+                   class="cursor-pointer block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden"
+                   (click)="logout()">
+                  Sign out
+                </a>
+              </div>
+            </ng-template>
+
+            <button [cdkMenuTriggerFor]="settingsMenu" type="button" class="icon-btn  text-gray-100">
+              <span class="sr-only">Settings</span>
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+
+            <ng-template #settingsMenu>
+              <!--                <div cdkMenu popover class="w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline-1 outline-black/5 transition transition-discrete [&#45;&#45;anchor-gap:&#45;&#45;spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">-->
+              <div cdkMenu
+                   class="w-48 origin-top-right rounded-md py-1 bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                <div class="px-4 py-2 bg-primary-200 text-sm">Peyman</div>
+                <!--                  <a cdkMenuItem href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Your profile</a>-->
+                <!--                  <a cdkMenuItem href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Settings</a>-->
+                <a cdkMenuItem
+                   class="cursor-pointer block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden"
+                   (click)="logout()">
+                  Sign out
+                </a>
+              </div>
+            </ng-template>
+
+            <!--            <button [cdkMenuTriggerFor]="menu" class="example-standalone-trigger">Click me!</button>-->
+
+            <!--            <ng-template #menu>-->
+            <!--              <div class="example-menu" cdkMenu>-->
+            <!--                <button class="example-menu-item" cdkMenuItem>Refresh</button>-->
+            <!--                <button class="example-menu-item" cdkMenuItem>Settings</button>-->
+            <!--                <button class="example-menu-item" cdkMenuItem>Help</button>-->
+            <!--                <button class="example-menu-item" cdkMenuItem>Sign out</button>-->
+            <!--              </div>-->
+            <!--            </ng-template>-->
+
+            <!-- Profile dropdown -->
+            <div class="relative">
+              <button [cdkMenuTriggerFor]="accountMenu" class="icon-btn  text-gray-100">
+                <span class="sr-only">Open user menu</span>
+                <span class="material-symbols-outlined">account_circle</span>
+              </button>
+
+              <ng-template #accountMenu>
+                <!--                <div cdkMenu popover class="w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline-1 outline-black/5 transition transition-discrete [&#45;&#45;anchor-gap:&#45;&#45;spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">-->
+                <div cdkMenu
+                     class="w-48 origin-top-right rounded-md py-1 bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                  <div class="px-4 py-2 bg-primary-200 text-sm">Peyman</div>
+                  <!--                  <a cdkMenuItem href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Your profile</a>-->
+                  <!--                  <a cdkMenuItem href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Settings</a>-->
+                  <a cdkMenuItem
+                     class="cursor-pointer block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden"
+                     (click)="logout()">
+                    Sign out
+                  </a>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="-mr-2 flex md:hidden">
+          <!-- Mobile menu button -->
+          <button type="button" command="--toggle" commandfor="mobile-menu"
+                  class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                 aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                 aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+              <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--    <el-disclosure id="mobile-menu" hidden class="block md:hidden">-->
+    <!--      <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">-->
+    <!--        &lt;!&ndash; Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" &ndash;&gt;-->
+    <!--        <a href="#" aria-current="page" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white">Dashboard</a>-->
+    <!--        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Team</a>-->
+    <!--        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Projects</a>-->
+    <!--        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Calendar</a>-->
+    <!--        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Reports</a>-->
+    <!--      </div>-->
+    <!--      <div class="border-t border-white/10 pt-4 pb-3">-->
+    <!--        <div class="flex items-center px-5">-->
+    <!--          <div class="shrink-0">-->
+    <!--            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />-->
+    <!--          </div>-->
+    <!--          <div class="ml-3">-->
+    <!--            <div class="text-base/5 font-medium text-white">Tom Cook</div>-->
+    <!--            <div class="text-sm font-medium text-gray-400">tom@example.com</div>-->
+    <!--          </div>-->
+    <!--          <button type="button" class="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">-->
+    <!--            <span class="absolute -inset-1.5"></span>-->
+    <!--            <span class="sr-only">View notifications</span>-->
+    <!--            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">-->
+    <!--              <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />-->
+    <!--            </svg>-->
+    <!--          </button>-->
+    <!--        </div>-->
+    <!--        <div class="mt-3 space-y-1 px-2">-->
+    <!--          <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Your profile</a>-->
+    <!--          <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</a>-->
+    <!--          <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Sign out</a>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </el-disclosure>-->
+  </nav>
+
+  <!--  <header class="relative bg-white shadow-sm">-->
+  <!--    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">-->
+  <!--      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>-->
+  <!--    </div>-->
+  <!--  </header>-->
+  <!--  <main>-->
+  <!--    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">-->
+<div class="mt-16">
+  <amplify-authenticator>
+    <router-outlet/>
+  </amplify-authenticator>
+</div>
+  <!-- Your content -->
+  <!--    </div>-->
+  <!--  </main>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;<amplify-authenticator>&ndash;&gt;-->
+<!--&lt;!&ndash;  <ng-template&ndash;&gt;-->
+<!--&lt;!&ndash;    amplifySlot="authenticated"&ndash;&gt;-->
+<!--&lt;!&ndash;    let-user="user"&ndash;&gt;-->
+<!--&lt;!&ndash;    let-signOut="signOut"&ndash;&gt;-->
+<!--&lt;!&ndash;  >&ndash;&gt;-->
+<!--&lt;!&ndash;    <app-todos></app-todos>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button (click)="signOut()">Sign Out</button>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ng-template>&ndash;&gt;-->
+<!--&lt;!&ndash;</amplify-authenticator>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<amplify-authenticator>&ndash;&gt;-->
+<!--&lt;!&ndash;  <ng-template&ndash;&gt;-->
+<!--&lt;!&ndash;    amplifySlot="authenticated"&ndash;&gt;-->
+<!--&lt;!&ndash;    let-user="user"&ndash;&gt;-->
+<!--&lt;!&ndash;    let-signOut="signOut"&ndash;&gt;-->
+<!--&lt;!&ndash;  >&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>Hello {{user?.signInDetails?.loginId}}'s todos</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <app-todos></app-todos>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <app-upload/>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button (click)="signOut()">Sign Out</button>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ng-template>&ndash;&gt;-->
+<!--&lt;!&ndash;</amplify-authenticator>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Hello</h1>&ndash;&gt;-->
+<!--<header>-->
+<!--  <div class="flex items-center p-4 bg-red-400 gap-4">-->
+<!--    <p>GENIE</p>-->
+<!--    <ul class="flex items-center gap-6 text-sm">-->
+<!--      @if (authService.user(); as user) {-->
+<!--        <li><a class="" [routerLink]="['uploads']"> Uploads </a></li>-->
+<!--        @if (user.role === 'Publisher' || user.role === 'Administrator') {-->
+<!--          <li><a class="" [routerLink]="['submissions']"> Submissions </a></li>-->
+<!--          <li><a class="" [routerLink]="['user-retractions']"> User Retraction </a></li>-->
+<!--        }-->
+<!--        <li><a [routerLink]="['/uploads/warning-settings']">Upload Warning's Settings</a></li>-->
+<!--        @if (user.role === 'Publisher' || user.role === 'Administrator') {-->
+<!--          <li><a [routerLink]="['submissions/warning-settings']">Submission Warning's Settings</a></li>-->
+<!--        }-->
+<!--        <li><span class=""> {{ user.username }} | {{user.role}}</span></li>-->
+<!--        <li><a class="" (click)="logout()"> Logout </a></li>-->
+<!--      } @else {-->
+<!--        <li><a class=""> Login </a></li>-->
+<!--      }-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</header>-->
+<!--&lt;!&ndash;<pre>{{ authService.user() | json }}</pre>&ndash;&gt;-->
+<!--&lt;!&ndash;<pre>{{ authService.role() | json }}</pre>&ndash;&gt;-->
+<!--&lt;!&ndash;<pre>Hello :{{ authRoleService.getRole() | async }}</pre>&ndash;&gt;-->
 <!--<amplify-authenticator>-->
-<!--  <ng-template-->
-<!--    amplifySlot="authenticated"-->
-<!--    let-user="user"-->
-<!--    let-signOut="signOut"-->
-<!--  >-->
-<!--    <app-todos></app-todos>-->
-<!--    <button (click)="signOut()">Sign Out</button>-->
-<!--  </ng-template>-->
+<!--  <router-outlet />-->
 <!--</amplify-authenticator>-->
 
+<!--&lt;!&ndash;<amplify-authenticator>&ndash;&gt;-->
+<!--&lt;!&ndash;  <nz-layout class="min-h-full! scroll-auto">&ndash;&gt;-->
+<!--&lt;!&ndash;    <nz-header class="bg-primary! fixed z-50 w-full">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="flex justify-between">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="flex items-center gap-16">&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="text-white"><span>GENIE</span><span class="mx-2">|</span><span>Data Submission Portal</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;          @if (authenticator.authStatus === "authenticated") {&ndash;&gt;-->
+<!--&lt;!&ndash;            <ul nz-menu nzTheme="dark" nzMode="horizontal" class="bg-primary!">&ndash;&gt;-->
+<!--&lt;!&ndash;              <li nz-menu-item [routerLink]="['uploads']">Uploads</li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li nz-menu-item [routerLink]="['submissions']">Submissions</li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li nz-menu-item [routerLink]="['user-retractions']">User Retraction</li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;          }&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;          <ul nz-menu nzTheme="dark" nzMode="horizontal" class="bg-primary!">&ndash;&gt;-->
+<!--&lt;!&ndash;            @if (authenticator.authStatus !== "authenticated") {&ndash;&gt;-->
+<!--&lt;!&ndash;              <li nz-menu-item [routerLink]="['login']">&ndash;&gt;-->
+<!--&lt;!&ndash;                Login&ndash;&gt;-->
+<!--&lt;!&ndash;              </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            } @else {&ndash;&gt;-->
+<!--&lt;!&ndash;            <li nz-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="settingsMenu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <nz-icon nzType="setting" class="text-lg!" />&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <nz-dropdown-menu #settingsMenu="nzDropdownMenu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul nz-menu>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <li nz-menu-item >&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a [routerLink]="['/uploads/warning-settings']">Upload Warning's Settings</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <li nz-menu-item><a  [routerLink]="['submissions/warning-settings']">&ndash;&gt;-->
+<!--&lt;!&ndash;                    Submission Warning's Settings&ndash;&gt;-->
+<!--&lt;!&ndash;                  </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;              </nz-dropdown-menu>&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li nz-menu-item>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="accountMenu" [nzPlacement]="'bottomRight'">&ndash;&gt;-->
+<!--&lt;!&ndash;                <nz-icon nzType="user" class="text-lg!" />&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <nz-dropdown-menu #accountMenu="nzDropdownMenu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul nz-menu class="w-40!">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <li nz-menu-item>Profile</li>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <li nz-menu-item (click)="logout()">Logout</li>&ndash;&gt;-->
+<!--&lt;!&ndash;                  &lt;!&ndash;              <li nz-menu-item>menu 3rd menu item</li>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;              </nz-dropdown-menu>&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash;          <nz-icon nzType="logout" nzTheme="outline"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;        <li nz-menu-item [routerLink]="['account']">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash;          <nz-icon nzType="user" nzTheme="outline"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              &lt;!&ndash;        </li>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;          }&ndash;&gt;-->
+<!--&lt;!&ndash;          </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </nz-header>&ndash;&gt;-->
+<!--&lt;!&ndash;    <nz-content class="mt-16">&ndash;&gt;-->
+<!--&lt;!&ndash;      <router-outlet></router-outlet>&ndash;&gt;-->
+<!--&lt;!&ndash;    </nz-content>&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash;  <nz-footer class="bg-primary/40! py-4!">Implement By Angular</nz-footer>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;  </nz-layout>&ndash;&gt;-->
 
-<amplify-authenticator>
-  <ng-template
-    amplifySlot="authenticated"
-    let-user="user"
-    let-signOut="signOut"
-  >
-    <h1>Hello {{user?.signInDetails?.loginId}}'s todos</h1>
-    <app-todos></app-todos>
-    <button (click)="signOut()">Sign Out</button>
-  </ng-template>
-</amplify-authenticator>
+<!--&lt;!&ndash;&lt;!&ndash;  <router-outlet></router-outlet>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;</amplify-authenticator>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<amplify-authenticator>&ndash;&gt;-->
+<!--&lt;!&ndash;  <ng-template&ndash;&gt;-->
+<!--&lt;!&ndash;    amplifySlot="authenticated"&ndash;&gt;-->
+<!--&lt;!&ndash;    let-user="user"&ndash;&gt;-->
+<!--&lt;!&ndash;    let-signOut="signOut"&ndash;&gt;-->
+<!--&lt;!&ndash;  >&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>Hello {{user?.signInDetails?.loginId}}'s todos</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    <router-outlet />&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash;    <app-todos></app-todos>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <app-upload/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <button (click)="signOut()">Sign Out</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;  </ng-template>&ndash;&gt;-->
+<!--&lt;!&ndash;</amplify-authenticator>&ndash;&gt;-->

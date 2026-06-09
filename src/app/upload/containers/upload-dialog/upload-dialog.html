@@ -1,0 +1,50 @@
+<div class="w-125">
+<div class="flex justify-between items-center">
+  <span>Files ({{ files?.length }})</span>
+  <span>
+    <button (click)="dialogRef.close()">
+      <span class="material-symbols-outlined">keyboard_arrow_down</span>
+    </button>
+    <button (click)="dialogRef.close()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </span>
+</div>
+@if (files?.length > 0) {
+  <div class="flex w-full flex-col gap-3">
+<!--    <div class="flex items-center justify-between gap-2">-->
+<!--      <h3 class="truncate text-sm font-medium">Files ({{ files?.length }})</h3>-->
+<!--      <div class="flex gap-2">-->
+<!--        <button class="btn primary" (click)="fileInput.click()">-->
+<!--          <span class="material-symbols-outlined">add</span>-->
+<!--          <span>Add files</span>-->
+<!--        </button>-->
+<!--        &lt;!&ndash;            <button class="btn danger" (click)="clearAllProgressTracking()">&ndash;&gt;-->
+<!--        &lt;!&ndash;              <span class="material-symbols-outlined">delete</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;              <span>Remove all</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </button>&ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="w-full flex flex-col gap-1 space-y-2">
+      @for (file of files; track $index) {
+        <app-upload-task [file]="file" />
+      }
+    </div>
+  </div>
+}
+</div>
+
+
+<!--Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It's not a story the Jedi-->
+<!--would tell you. It's a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so-->
+<!--wise he could use the Force to influence the midichlorians to create life… He had such a knowledge-->
+<!--of the dark side that he could even keep the ones he cared about from dying. The dark side of the-->
+<!--Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only-->
+<!--thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately,-->
+<!--he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic.-->
+<!--He could save others from death, but not himself.-->
+
+<!--<hr>-->
+
+<!--<button (click)="dialogRef.close()">Close</button>-->

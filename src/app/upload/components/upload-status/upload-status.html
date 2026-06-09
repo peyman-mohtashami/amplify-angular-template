@@ -1,0 +1,55 @@
+<div>
+  @switch (data().status) {
+    @case ('valid') {
+      <span class="py-1 px-2 rounded-lg border border-green-700 bg-green-700/20 text-green-700">
+<!--        <nz-icon nzType="safety-certificate" nzTheme="outline" class="text-green-700!" />-->
+        {{ data().releaseVersion ?? 'Ready for submission' }}
+      </span>
+    }
+<!--    @case (UploadStatus.WarningsResolved) {-->
+<!--      <span class="py-1 px-2 rounded-lg border border-green-700 bg-green-700/20 text-green-700">-->
+<!--&lt;!&ndash;        <nz-icon nzType="exclamation-circle" nzTheme="outline" class="text-green-700!" />&ndash;&gt;-->
+<!--        Ready for submission-->
+<!--      </span>-->
+<!--    }-->
+<!--    @case (UploadStatus.InvalidWithErrorWarning) {-->
+<!--      @if (data().errors.length > 0) {-->
+<!--        <span class="py-1 px-2 rounded-lg border border-red-500 bg-red-500/20 text-red-500">-->
+<!--&lt;!&ndash;          <nz-icon nzType="exclamation-circle" nzTheme="outline" class="text-red-500!" />&ndash;&gt;-->
+<!--          Error(s) in the file-->
+<!--        </span>-->
+<!--      } @else if (data().warnings.length > 0) {-->
+<!--        <span class="py-1 px-2 rounded-lg border border-orange-500 bg-orange-500/20 text-orange-500">-->
+<!--&lt;!&ndash;          <nz-icon nzType="exclamation-circle" nzTheme="outline" class="text-orange-500!" />&ndash;&gt;-->
+<!--          Warning(s) in the file-->
+<!--        </span>-->
+<!--      }-->
+<!--    }-->
+    @case ('uploading') {
+      <span class="py-1 px-2 rounded-lg border border-b-cyan-700 bg-cyan-700/20 text-cyan-700">
+<!--        <nz-icon nzType="cloud-upload" nzTheme="outline" class="text-primary!" />-->
+        Uploading...
+<!--        ({{ data().uploadProgress?.() }}%)-->
+      </span>
+    }
+    @case ('validating') {
+      <span class="py-1 px-2 rounded-lg border border-b-cyan-700 bg-cyan-700/20 text-cyan-700">
+<!--        <nz-icon nzType="interaction" nzTheme="outline" class="text-cyan-700!" />-->
+        Validating...
+<!--        ({{ data().validationProgress?.() }}%)-->
+      </span>
+    }
+<!--    @case (UploadStatus.FailedUpload) {-->
+<!--      <span class="py-1 px-2 rounded-lg border border-gray-500 bg-gray-500/20 text-gray-500">-->
+<!--&lt;!&ndash;        <nz-icon nzType="close-circle" nzTheme="outline" class="text-gray-500!" />&ndash;&gt;-->
+<!--        Failed to upload-->
+<!--      </span>-->
+<!--    }-->
+<!--    @case (UploadStatus.FailedValidation) {-->
+<!--      <span class="py-1 px-2 rounded-lg border border-gray-500 bg-gray-500/20 text-gray-500">-->
+<!--&lt;!&ndash;        <nz-icon nzType="close-circle" nzTheme="outline" class="text-gray-500!" />&ndash;&gt;-->
+<!--        Failed validation-->
+<!--      </span>-->
+<!--    }-->
+  }
+</div>

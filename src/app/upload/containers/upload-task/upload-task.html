@@ -1,0 +1,81 @@
+<!--@if ((percentage | async); as pct) {-->
+@let transferredBytes = uploadState().transferredBytes;
+@let totalBytes = uploadState().totalBytes;
+@let status = uploadState().status;
+<!--<div>-->
+<!--  <progress [value]="(transferredBytes / totalBytes) * 100" max="100"></progress>-->
+<!--  {{ (transferredBytes / totalBytes) * 100 | number }}%-->
+<!--</div>-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+
+<!--&lt;!&ndash;@if ((snapshot | async); as snap) {&ndash;&gt;-->
+<!--<div>-->
+<!--  <div>-->
+<!--    {{ transferredBytes / 1024 | number:'1.0-1' }} of {{ totalBytes / 1024 | number:'1.0-1' }} KB, {{ file?.name }}-->
+<!--  </div>-->
+<!--&lt;!&ndash;  <button (click)="task.pause()" [disabled]="!isActive(snap)" [hidden]="!isActive(snap)">Pause</button>&ndash;&gt;-->
+<!--  <button  [disabled]="!isActive()" [hidden]="!isActive()">Pause</button>-->
+<!--&lt;!&ndash;  <button (click)="task.cancel()" [disabled]="!isActive(snap)" [hidden]="!isActive(snap)">Cancel</button>&ndash;&gt;-->
+<!--  <button  [disabled]="!isActive()" [hidden]="!isActive()">Cancel</button>-->
+<!--&lt;!&ndash;  <button (click)="task.resume()" [disabled]="!(snap?.state === 'paused')" [hidden]="!isActive(snap)">Resume</button>&ndash;&gt;-->
+<!--  <button  [disabled]="!(status === 'paused')" [hidden]="!isActive()">Resume</button>-->
+<!--</div>-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+
+
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+<div class="flex flex-col gap-1 rounded-lg border border-gray-400 p-2 pe-3 transition-opacity duration-300"
+     [attr.data-uploading]="status === ''">
+  <div class="flex items-center justify-between gap-2">
+    <div class="w-full flex items-center justify-between gap-3 overflow-hidden in-data-[uploading=true]:opacity-50">
+<!--      <div class="flex aspect-square size-8 shrink-0 items-center justify-center rounded border border-gray-400">-->
+      <div class="flex items-center justify-between">
+        <span class="material-symbols-outlined text-gray-400">upload_file</span>
+<!--      </div>-->
+<!--      <div class="flex w-full justify-between gap-0.5">-->
+        <p class="truncate text-[13px] font-medium">
+          <span>{{ file.name }} | {{file.size}}</span>
+        </p>
+      </div>
+        @if (transferredBytes === totalBytes) {
+          <span class="material-symbols-outlined text-green-500">check_circle</span>
+          <!--            error-->
+        }
+<!--        <p class="text-muted-foreground text-xs">-->
+<!--          -->
+<!--        </p>-->
+<!--      </div>-->
+    </div>
+<!--    <button class="icon-btn danger" (click)="handleFileRemoved(file)">-->
+<!--      <span class="sr-only">Remove</span>-->
+<!--      <span class="material-symbols-outlined">delete</span>-->
+<!--    </button>-->
+<!--    <button class="cursor-pointer mt-4 inline-flex items-center gap-2 rounded-full border border-indigo-600 bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 focus-visible:ring-4 focus-visible:ring-indigo-200 focus-visible:outline-none"-->
+<!--       (click)="handleFileRemoved(file)">-->
+<!--      <span class="material-symbols-outlined">cancel</span>-->
+<!--&lt;!&ndash;      <span>Remove</span>&ndash;&gt;-->
+<!--    </button>-->
+<!--    <button-->
+<!--      class="text-muted-foreground/80 hover:text-foreground -me-2 size-8 hover:bg-transparent"-->
+<!--      (click)="handleFileRemoved(file)"-->
+<!--      aria-label="Remove file"-->
+<!--    >-->
+<!--      Remove-->
+<!--&lt;!&ndash;      <lucide-angular class="size-4" [img]="X" aria-hidden="true" />&ndash;&gt;-->
+<!--    </button>-->
+  </div>
+
+  @if (status !== 'completed') {
+    <div class="mt-1 flex items-center gap-2">
+      <div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
+        <div class="bg-primary-500 h-full transition-all duration-300 ease-out"
+             [style.width.%]="100 * (transferredBytes / totalBytes)">
+        </div>
+        <span class="text-muted-foreground w-10 text-xs tabular-nums">
+          {{ 100 * (transferredBytes / totalBytes) }}%
+        </span>
+      </div>
+    </div>
+  }
+</div>

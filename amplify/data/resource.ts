@@ -1,18 +1,31 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
 const schema = a.schema({
-  Todo: a
+  Upload: a
     .model({
-      content: a.string(),
+      siteId: a.string().required(),
+      releaseId: a.string().required(),
+      name: a.string().required(),
+      type: a.string().required(),
+      status: a.string().required(),
+      uploadedBy: a.string().required(),
+      uploadedAt: a.datetime(),
+      validatedAt: a.datetime(),
+      sha256Hash: a.string(),
+      releaseVersion: a.string(),
+      s3Uri: a.string(),
+      errors: a.json(),
+      warnings: a.json(),
     })
-    .authorization(allow => [allow.owner()]),
-    // .authorization((allow) => [allow.publicApiKey()]),
+    // .identifier(['siteId', 'releaseId'])
+    .authorization((allow) => [allow.authenticated()]),
+  LatestRelease: a
+    .model({
+      key: a.string().required(),
+      releaseId: a.string().required(),
+    })
+    .identifier(['key'])
+    .authorization((allow) => [allow.authenticated()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -28,6 +41,7 @@ export const data = defineData({
     },
   },
 });
+
 
 /*== STEP 2 ===============================================================
 Go to your frontend source code. From your client-side code, generate a

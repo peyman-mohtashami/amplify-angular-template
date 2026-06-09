@@ -1,65 +1,131 @@
-body {
-    margin: 0;
-    background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
-    display: flex;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    height: 100vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-  }
+@import 'tailwindcss';
 
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
+@theme {
+  /* ==========================
+     RAW COLOR PALETTES
+     ========================== */
+  --color-pearl-beige-50: #fef6e7;
+  --color-pearl-beige-100: #fceecf;
+  --color-pearl-beige-200: #f9dd9f;
+  --color-pearl-beige-300: #f7cb6e;
+  --color-pearl-beige-400: #f4ba3e;
+  --color-pearl-beige-500: #f1a90e;
+  --color-pearl-beige-600: #c1870b;
+  --color-pearl-beige-700: #916508;
+  --color-pearl-beige-800: #604406;
+  --color-pearl-beige-900: #302203;
+  --color-pearl-beige-950: #221802;
 
-  button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.25s;
-    color: white;
-  }
-  button:hover {
-    border-color: #646cff;
-  }
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
+  /* Primary dusk-blue */
+  --color-primary-50: #eef1f7;
+  --color-primary-100: #dce2ef;
+  --color-primary-200: #b9c6df;
+  --color-primary-300: #96a9cf;
+  --color-primary-400: #738cbf;
+  --color-primary-500: #5070af;
+  --color-primary-600: #40598c;
+  --color-primary-700: #304369;
+  --color-primary-800: #202d46;
+  --color-primary-900: #101623;
+  --color-primary-950: #0b1018;
 
-  ul {
-    padding-inline-start: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    margin: 8px 0;
-    border: 1px solid black;
-    gap: 1px;
-    background-color: black;
-    border-radius: 8px;
-    overflow: auto;
-  }
+  /* Secondary razzmatazz */
+  --color-accent-50: #fdf2f8;
+  --color-accent-100: #fde6f2;
+  --color-accent-200: #fdcde6;
+  --color-accent-300: #fca5d1;
+  --color-accent-400: #f96db1;
+  --color-accent-500: #f34192;
+  --color-accent-600: #e2206e;
+  --color-accent-700: #cf1259;
+  --color-accent-800: #a31146;
+  --color-accent-900: #87143e;
+  --color-accent-950: #530420;
 
-  li {
-    background-color: white;
-    padding: 8px;
-  }
+  /* Tertiary asparagus */
+  --color-tertiary-50: #f4f5f0;
+  --color-tertiary-100: #e6eadd;
+  --color-tertiary-200: #d0d7bf;
+  --color-tertiary-300: #b2be98;
+  --color-tertiary-400: #8a9b68;
+  --color-tertiary-500: #788959;
+  --color-tertiary-600: #5d6c44;
+  --color-tertiary-700: #495437;
+  --color-tertiary-800: #3c4430;
+  --color-tertiary-900: #353c2b;
+  --color-tertiary-950: #1a1f14;
 
-  li:hover {
-    background: #dadbf9;
-  }
+  /* Danger */
+  --color-danger-50: #fef2f2;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
 
-  a {
-    font-weight: 800;
-    text-decoration: none;
-  }
+  /* Success */
+  --color-success-50: #f0fdf4;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+
+  /* ==========================
+     SEMANTIC TOKENS
+     LIGHT THEME
+     ========================== */
+
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-elevated: #ffffff;
+
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+
+  --color-border: #e2e8f0;
+  --color-border-muted: #f1f5f9;
+}
+
+.dark {
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-elevated: #334155;
+
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #0f172a;
+
+  --color-border: #334155;
+  --color-border-muted: #1e293b;
+
+  /*--color-brand: var(--color-primary-400);*/
+  /*--color-brand-hover: var(--color-primary-300);*/
+
+  /*--color-accent: var(--color-secondary-400);*/
+
+  /*--color-success: #4ade80;*/
+  /*--color-success-hover: #22c55e;*/
+
+  /*--color-danger: #f87171;*/
+  /*--color-danger-hover: #ef4444;*/
+}
+
+.btn {
+  @apply cursor-pointer inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium bg-primary-500 text-gray-100 hover:bg-primary-600 hover:text-white;
+}
+
+.icon-btn {
+  @apply cursor-pointer inline-flex size-8 items-center justify-center rounded-full transition-colors focus-visible:ring-4 focus-visible:outline-none;
+}
+
+/*cursor-pointer mt-4 inline-flex items-center gap-2 rounded-full border border-indigo-600 bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 focus-visible:ring-4 focus-visible:ring-indigo-200 focus-visible:outline-none*/
+/*cursor-pointer mt-4 inline-flex items-center gap-2 rounded-full border border-red-600 bg-white px-6 py-3 text-sm font-semibold text-red-600 shadow-sm transition-colors hover:bg-indigo-700 focus-visible:ring-4 focus-visible:ring-indigo-200 focus-visible:outline-none*/
+
+.btn.primary {
+  @apply bg-primary-500 text-gray-100 hover:bg-primary-600 hover:text-white
+}
+
+.btn.danger {
+  @apply bg-danger-500 text-gray-100 hover:bg-danger-600 hover:text-white
+}
+
+.icon-btn.primary {}
+.icon-btn.danger {
+  @apply hover:bg-danger-500/10 text-danger-500 hover:text-danger-600 focus-visible:ring-red-200
+}

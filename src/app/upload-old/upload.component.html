@@ -1,0 +1,16 @@
+<p>upload works!</p>
+<!--<input type="file" class="file-upload" onchange="console.log(event.target.files)">-->
+<!--<button (click)="uploadFile()">Upload File</button>-->
+
+
+<input type="file" class="file-input" style="display: none;"
+       (change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload">
+
+  {{fileName || "No file uploaded yet."}}
+
+  <button class="upload-btn" (click)="fileUpload.click()">
+    Upload
+  </button>
+</div>
